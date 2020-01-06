@@ -14,6 +14,7 @@ function zenity_html(file, title, other) {
 	if (!title) title = gtitle
 	if (!other) other = gzenity
 	return system(zenity("--text-info --filename='" file "' --title='" title "' " other))
+	return system(firefox file)
 }
 
 function zenity_progress(text, title, other) {
