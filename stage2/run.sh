@@ -11,7 +11,7 @@ if [ "$ID" != 0 ]; then
 	exec su -c $0
 fi
 echo "Checking if zenity and gawk are installed..."
-which gawk 2>&1 >/dev/null || apt install -y gawk
-which zenity 2>&1 >/dev/null || apt install -y zenity
+which gawk 2>&1 >/dev/null || yum install -y gawk
+which zenity 2>&1 >/dev/null || yum install -y zenity
 echo "Launching setup..."
 gawk -f main.awk 2>&1 | tee -a /tmp/ra1nstorm.log
