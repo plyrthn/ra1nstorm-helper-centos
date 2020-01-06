@@ -56,7 +56,9 @@ function wiz_installreq(\
 	h, failed, status) {
 	h = zenity_progress("Installing required packages (this may take a long time)...", 0, gzenity " --ok-label 'Next' --cancel-label 'Back'")
 	# TODO: support other distros?
-	system("yum install -y python qemu uml-utilities virt-manager dmg2img git wget libguestfs-tools")
+	system("wget http://repository.it4i.cz/mirrors/repoforge/redhat/el7/en/x86_64/rpmforge/RPMS/rpmforge-release-0.5.3-1.el7.rf.x86_64.rpm")
+	system("rpm -Uvh rpmforge-release-0.5.3-1.el7.rf.x86_64.rpm")
+	system("yum install -y python qemu uml-utilities virt-manager dmg2img git wget spice-server-devel libguestfs-tools")
 	if (!failed) print "# Successfully installed packages" | h
 	status = close(h)
 	if (status == 0 && !failed){
