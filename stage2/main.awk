@@ -56,16 +56,7 @@ function wiz_installreq(\
 	h, failed, status) {
 	h = zenity_progress("Installing required packages (this may take a long time)...", 0, gzenity " --ok-label 'Next' --cancel-label 'Back'")
 	# TODO: support other distros?
-	system("apt update")
-	for (i = 0; i < length(REQPKGS); i++) {
-		print "# Installing " REQPKGS[i] "..." | h
-		if (system("apt install -y " REQPKGS[i]) > 0) {
-			failed = 1
-			print "# Error: failed to install " REQPKGS[i] | h
-			break
-		}
-		print sprintf("%d", 100/length(REQPKGS)*(i+1)) | h
-	}
+	system("yum install -y python qemu uml-utilities virt-manager dmg2img git wget libguestfs-tools")
 	if (!failed) print "# Successfully installed packages" | h
 	status = close(h)
 	if (status == 0 && !failed){
